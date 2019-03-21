@@ -1,6 +1,6 @@
 function init() {
-	const body = document.getElementById('body');
+	const style = document.getElementById('style');
 	const redditWallpaperProvider = new RedditWallpaperProvider('earthporn');
-	const wallpaperWorker = new WallpaperWorker(body, redditWallpaperProvider);
+	const wallpaperWorker = new WallpaperWorker(style, redditWallpaperProvider);
 	wallpaperWorker.install();
 }
