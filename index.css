@@ -44,3 +44,17 @@ body {
   text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
   font-family: sans-serif;
 }
+
+#quote {
+  color: white;
+  width: 60%;
+  margin: auto;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  z-index: 11;
+  font-family: sans-serif;
+  text-align: center;
+}
+

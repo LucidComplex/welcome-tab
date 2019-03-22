@@ -3,4 +3,9 @@ function init() {
 	const redditWallpaperProvider = new RedditWallpaperProvider('earthporn');
 	const wallpaperWorker = new WallpaperWorker(style, redditWallpaperProvider);
 	wallpaperWorker.install();
+
+	const quote = document.getElementById('quote');
+	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
+	const quoteWorker = new QuoteWorker(quote, redditQuoteProvider);
+	quoteWorker.displayQuote();
 }
