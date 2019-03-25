@@ -8,4 +8,8 @@ function init() {
 	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
 	const quoteWorker = new QuoteWorker(quote, redditQuoteProvider);
 	quoteWorker.displayQuote();
+
+	const todayElement = document.getElementById('date');
+	const today = new Today(todayElement);
+	today.init();
 }
