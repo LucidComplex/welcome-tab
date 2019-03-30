@@ -21,19 +21,23 @@ const RedditQuoteProvider = function(subreddit) {
 
 	this.getQuoteFromResponse = function(response) {
 		const randomInt = Math.floor(Math.random() * 25);
-		return response.data.children[randomInt].data.title;
+		return {
+			title: response.data.children[randomInt].data.title,
+			author: response.data.children[randomInt].data.author
+		};
 	};
 };
 
-const QuoteWorker = function(element, quoteProvider) {
+const QuoteWorker = function(quoteElement, authorElement, quoteProvider) {
 	const self = this;
-	this.element = element;
+	this.quoteElement = quoteElement;
+	this.authorElement = authorElement;
 	this.quoteProvider = quoteProvider;
 
 	this.displayQuote = function() {
 		quoteProvider.getRandomQuote().then(function(quote) {
-			console.log(quote);
-			self.element.innerHTML = quote;
+			self.quoteElement.innerHTML = quote.title;
+			self.authorElement.innerHTML = '—/u/' + quote.author;
 		}).catch(function() {});
 	};
 };

@@ -5,8 +5,9 @@ function init() {
 	wallpaperWorker.install();
 
 	const quote = document.getElementById('quote');
+	const author = document.getElementById('author');
 	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
-	const quoteWorker = new QuoteWorker(quote, redditQuoteProvider);
+	const quoteWorker = new QuoteWorker(quote, author, redditQuoteProvider);
 	quoteWorker.displayQuote();
 
 	const todayElement = document.getElementById('date');
