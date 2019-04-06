@@ -21,6 +21,9 @@ const RedditQuoteProvider = function(subreddit) {
 
 	this.getQuoteFromResponse = function(response) {
 		const randomInt = Math.floor(Math.random() * 25);
+		while (response.data.children[randomInt].data.pinned) {
+			randomInt = Math.floor(Math.random() * 25);
+		}
 		return {
 			title: response.data.children[randomInt].data.title,
 			author: response.data.children[randomInt].data.author
