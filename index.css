@@ -38,6 +38,7 @@ body {
   z-index: 11;
   color: white;
   font-family: sans-serif;
+  text-shadow: 0px 0px 2px #000000;
 }
 
 #date-cell {
