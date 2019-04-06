@@ -13,4 +13,7 @@ function init() {
 	const todayElement = document.getElementById('date');
 	const today = new Today(todayElement);
 	today.init();
+
+	const settingsElement = document.getElementById('settings');
+	const settings = new Settings(settingsElement);
 }
