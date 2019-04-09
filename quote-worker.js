@@ -20,7 +20,7 @@ const RedditQuoteProvider = function(subreddit) {
 	};
 
 	this.getQuoteFromResponse = function(response) {
-		const randomInt = Math.floor(Math.random() * 25);
+		let randomInt = Math.floor(Math.random() * 25);
 		while (response.data.children[randomInt].data.stickied) {
 			randomInt = Math.floor(Math.random() * 25);
 		}
