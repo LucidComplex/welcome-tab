@@ -100,12 +100,13 @@ body {
 #settings-container {
   position: absolute;
   right: -340px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #000;
   color: white;
   height: 100%;
   width: 300px;
   padding: 0px 20px;
   transition: right 0.7s;
+  z-index: 2;
 }
 
 #settings-container.slide-in {
