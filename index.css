@@ -112,3 +112,15 @@ body {
 #settings-container.slide-in {
   right: 0px;
 }
+
+#close-settings {
+  position: absolute;
+  left: 290px;
+  top: 12px;
+  font-size: 14px;
+}
+
+#close-settings:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
