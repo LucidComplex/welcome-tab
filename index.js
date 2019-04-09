@@ -15,5 +15,6 @@ function init() {
 	today.init();
 
 	const settingsElement = document.getElementById('settings');
-	const settings = new Settings(settingsElement);
+	const settingsContainerElement = document.getElementById('settings-container');
+	const settings = new Settings(settingsElement, settingsContainerElement);
 }

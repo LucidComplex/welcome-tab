@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -88,6 +89,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
   z-index: 1;
+  transition: background-color 0.5s;
 }
 
 #settings:hover {
@@ -97,11 +99,15 @@ body {
 
 #settings-container {
   position: absolute;
-  right: 0px;
+  right: -340px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   height: 100%;
   width: 300px;
-  padding: 20px;
+  padding: 0px 20px;
+  transition: right 0.7s;
 }
 
+#settings-container.slide-in {
+  right: 0px;
+}
