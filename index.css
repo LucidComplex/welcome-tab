@@ -113,14 +113,14 @@ body {
   right: 0px;
 }
 
-#close-settings {
+#settings-container .close {
   position: absolute;
   left: 290px;
   top: 12px;
   font-size: 14px;
 }
 
-#close-settings:hover {
+#settings-container .close:hover {
   cursor: pointer;
   text-decoration: underline;
 }
