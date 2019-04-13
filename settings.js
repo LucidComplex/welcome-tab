@@ -3,10 +3,13 @@ const Settings = function(settingsElement, settingsContainerElement) {
 	this.settingsElement = settingsElement;
 	this.settingsContainerElement = settingsContainerElement;
 
+	this.components = [];
+
 	this.init = function() {
 		self.settingsElement.addEventListener('click', self.onClick);
 		const closeElements = self.settingsContainerElement.getElementsByClassName('close');
 		closeElements.item(0).addEventListener('click', self.onCloseClick);
+		self.renderComponents();
 	};
 
 	this.onClick = function() {
@@ -23,6 +26,20 @@ const Settings = function(settingsElement, settingsContainerElement) {
 
 	this.onClose = function() {
 	};
+
+	this.renderComponents = function() {
+		const container = self.settingsContainerElement.getElementsByClassName('forms-container')[0];
+		while (container.lastChild) {
+			container.removeChild(container.lastChild);
+		}
+		self.components.forEach(function(component) {
+			container.appendChild(component);
+		});
+	};
+
+	this.addComponents = function(component) {
+		self.components.push(component);
+	}
 
 	this.init();
 };

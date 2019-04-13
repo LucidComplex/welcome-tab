@@ -17,4 +17,11 @@ function init() {
 	const settingsElement = document.getElementById('settings');
 	const settingsContainerElement = document.getElementById('settings-container');
 	const settings = new Settings(settingsElement, settingsContainerElement);
+
+	const redditWallpaperSettings = new RedditWallpaperProviderSettings(redditWallpaperProvider);
+	const wallpaperSettings = new WallpaperWorkerSettings();
+	wallpaperSettings.addProvider('Reddit', redditWallpaperSettings);
+
+	settings.addComponents(wallpaperSettings.build());
+	settings.renderComponents();
 }
