@@ -125,3 +125,12 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.forms-container h1,
+.forms-container h2,
+.forms-container h3,
+.forms-container h4,
+.forms-container h5,
+.forms-container h6 {
+  margin: 5px 0px;
+}
