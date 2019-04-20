@@ -35,6 +35,9 @@ const Settings = function(settingsElement, settingsContainerElement) {
 		self.components.forEach(function(component) {
 			container.appendChild(component);
 		});
+		const save = document.createElement('button');
+		save.innerHTML = 'Save';
+		container.appendChild(save);
 	};
 
 	this.addComponents = function(component) {
