@@ -27,6 +27,16 @@ const Settings = function(settingsElement, settingsContainerElement) {
 	this.onClose = function() {
 	};
 
+	this.onSaveClick = function() {
+		self.components.forEach(function(component) {
+			console.log(component.selectedProvider);
+		});
+	};
+
+	this.setOnSaveClick = function(callback) {
+		self.onSaveClick = callback;
+	};
+
 	this.renderComponents = function() {
 		const container = self.settingsContainerElement.getElementsByClassName('forms-container')[0];
 		while (container.lastChild) {
@@ -36,6 +46,7 @@ const Settings = function(settingsElement, settingsContainerElement) {
 			container.appendChild(component.build());
 		});
 		const save = document.createElement('button');
+		save.addEventListener('click', self.onSaveClick);
 		save.innerHTML = 'Save';
 		container.appendChild(save);
 	};
