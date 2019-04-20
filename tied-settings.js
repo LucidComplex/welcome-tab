@@ -1,9 +1,15 @@
 const RedditWallpaperProviderSettings = function(provider) {
+	const self = this;
+	this.value = '';
 	this.build = function() {
 		const span = document.createElement('span');
 		const label = document.createTextNode('Reddit Wallpaper Subreddit');
 		const field = document.createElement('input', {type: 'text'});
+		field.addEventListener('change', function() {
+			self.value = field.value;
+		});
 		field.value = provider.subreddit;
+		self.value = provider.subreddit;
 		const header = document.createElement('h6');
 		const div = document.createElement('div');
 		span.appendChild(label);
@@ -16,6 +22,7 @@ const RedditWallpaperProviderSettings = function(provider) {
 const WallpaperWorkerSettings = function() {
 	const self = this;
 
+	this.selectedProvider = undefined;
 	this.providers = {};
 
 	this.build = function() {
@@ -24,7 +31,7 @@ const WallpaperWorkerSettings = function() {
 		const headerText = document.createTextNode('Wallpaper Provider');
 		const providerSelect = document.createElement('select');
 		providerSelect.addEventListener('change', function() {
-			console.log('changed');
+			self.selectedProvider = self.getProvider(providerSelect.value);
 		});
 		const providerKeys = Object.keys(self.providers);
 		for (let i = 0; i < providerKeys.length; i++) {
@@ -35,9 +42,9 @@ const WallpaperWorkerSettings = function() {
 		header.appendChild(headerText);
 		div.appendChild(header);
 		div.appendChild(providerSelect);
-		const selectedProvider = self.getProvider(providerSelect.value);
-		if (selectedProvider) {
-			div.appendChild(selectedProvider.build());
+		self.selectedProvider = self.getProvider(providerSelect.value);
+		if (self.selectedProvider) {
+			div.appendChild(self.selectedProvider.build());
 		}
 		return div;
 	};
