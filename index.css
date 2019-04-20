@@ -135,6 +135,10 @@ body {
 	margin: 5px 0px;
 }
 
+.forms-container div {
+	margin: 5px 0px;
+}
+
 .forms-container {
 	font-family: sans-serif;
 }
