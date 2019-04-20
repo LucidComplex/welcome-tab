@@ -1,6 +1,7 @@
 const RedditWallpaperProviderSettings = function(provider) {
 	const self = this;
 	this.value = '';
+	this.provider = provider;
 	this.build = function() {
 		const span = document.createElement('span');
 		const label = document.createTextNode('Reddit Wallpaper Subreddit');
@@ -17,10 +18,15 @@ const RedditWallpaperProviderSettings = function(provider) {
 		div.appendChild(span);
 		return div;
 	};
+
+	this.save = function() {
+		self.provider.subreddit = self.value;
+	};
 };
 
-const WallpaperWorkerSettings = function() {
+const WallpaperWorkerSettings = function(wallpaperWorker) {
 	const self = this;
+	this.wallpaperWorker = wallpaperWorker;
 
 	this.selectedProvider = undefined;
 	this.providers = {};
@@ -47,6 +53,11 @@ const WallpaperWorkerSettings = function() {
 			div.appendChild(self.selectedProvider.build());
 		}
 		return div;
+	};
+
+	this.apply = function() {
+		self.selectedProvider.save();
+		wallpaperWorker.install();
 	};
 
 	this.getProvider = function(key) {

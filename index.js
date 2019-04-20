@@ -19,7 +19,7 @@ function init() {
 	const settings = new Settings(settingsElement, settingsContainerElement);
 
 	const redditWallpaperSettings = new RedditWallpaperProviderSettings(redditWallpaperProvider);
-	const wallpaperSettings = new WallpaperWorkerSettings();
+	const wallpaperSettings = new WallpaperWorkerSettings(wallpaperWorker);
 	wallpaperSettings.addProvider('Reddit', redditWallpaperSettings);
 
 	settings.addComponents(wallpaperSettings);

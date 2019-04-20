@@ -29,7 +29,7 @@ const Settings = function(settingsElement, settingsContainerElement) {
 
 	this.onSaveClick = function() {
 		self.components.forEach(function(component) {
-			console.log(component.selectedProvider);
+			component.apply();
 		});
 	};
 
