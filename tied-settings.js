@@ -1,14 +1,11 @@
 const RedditWallpaperProviderSettings = function(provider) {
 	this.build = function() {
 		const span = document.createElement('span');
-		const label = document.createTextNode('Subreddit URL: ');
+		const label = document.createTextNode('Reddit Wallpaper Subreddit');
 		const field = document.createElement('input', {type: 'text'});
 		field.value = provider.subreddit;
 		const header = document.createElement('h6');
-		const headerText = document.createTextNode('Reddit Wallpaper');
 		const div = document.createElement('div');
-		header.appendChild(headerText);
-		div.appendChild(header);
 		span.appendChild(label);
 		span.appendChild(field);
 		div.appendChild(span);
@@ -24,7 +21,7 @@ const WallpaperWorkerSettings = function() {
 	this.build = function() {
 		const div = document.createElement('div');
 		const header = document.createElement('h5');
-		const headerText = document.createTextNode('Wallpaper Settings');
+		const headerText = document.createTextNode('Wallpaper Provider');
 		const providerSelect = document.createElement('select');
 		providerSelect.addEventListener('change', function() {
 			console.log('changed');
