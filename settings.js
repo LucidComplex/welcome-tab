@@ -33,7 +33,7 @@ const Settings = function(settingsElement, settingsContainerElement) {
 			container.removeChild(container.lastChild);
 		}
 		self.components.forEach(function(component) {
-			container.appendChild(component);
+			container.appendChild(component.build());
 		});
 		const save = document.createElement('button');
 		save.innerHTML = 'Save';

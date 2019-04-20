@@ -22,6 +22,6 @@ function init() {
 	const wallpaperSettings = new WallpaperWorkerSettings();
 	wallpaperSettings.addProvider('Reddit', redditWallpaperSettings);
 
-	settings.addComponents(wallpaperSettings.build());
+	settings.addComponents(wallpaperSettings);
 	settings.renderComponents();
 }
