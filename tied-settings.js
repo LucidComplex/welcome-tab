@@ -20,6 +20,7 @@ const RedditWallpaperProviderSettings = function(provider) {
 	};
 
 	this.save = function() {
+		window.localStorage.setItem('redditWallpaper', self.value);
 		self.provider.subreddit = self.value;
 	};
 };
