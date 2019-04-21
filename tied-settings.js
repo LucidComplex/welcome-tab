@@ -57,7 +57,7 @@ const WallpaperWorkerSettings = function(wallpaperWorker) {
 
 	this.apply = function() {
 		self.selectedProvider.save();
-		wallpaperWorker.install();
+		wallpaperWorker.apply();
 	};
 
 	this.getProvider = function(key) {

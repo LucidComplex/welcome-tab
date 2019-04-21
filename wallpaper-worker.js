@@ -3,7 +3,7 @@ const WallpaperWorker = function(element, provider) {
 	this.element = element;
 	this.provider = provider;
 
-	this.install = function() {
+	this.apply = function() {
 		self.provider.getRandom().then(function(url) {
 			self.element.innerHTML = '.bg {background-image: url("' + url + '");}';
 		}).catch(function(){});
