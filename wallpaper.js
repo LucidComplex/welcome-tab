@@ -1,9 +1,29 @@
-const WallpaperManager = function(dom) {
+const WallpaperManager = function(dom, settings) {
 	const self = this;
+	this.providers = {};
 	this.styleElement = dom.getElementById('style');
+	this.settings = settings;
 
 	this.setWallpaper = function(wallpaper) {
-		this.styleElement.innerHTML = '.bg {background-image: url("' + wallpaper.url + '");}';
+		self.styleElement.innerHTML = '.bg {background-image: url("' + wallpaper.url + '");}';
+	};
+
+	this.addProvider = function(name, provider) {
+		self.providers[name] = provider;
+	};
+
+	this.getProvider = function(name) {
+		return self.providers[name];
+	};
+
+	this.setRandomWallpaperFromProvider = function() {
+		const provider = self.getProvider('reddit');
+		provider.promiseRandomWallpaper()
+			.then(function(wallpaper) {
+				self.setWallpaper(wallpaper);
+			})
+			.catch(function() {
+			});
 	};
 };
 
