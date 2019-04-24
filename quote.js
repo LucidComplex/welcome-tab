@@ -1,11 +1,30 @@
-const QuoteManager = function(dom) {
+const QuoteManager = function(dom, settings) {
 	const self = this;
+	this.providers = {};
 	this.quoteElement = dom.getElementById('quote');
 	this.authorElement = dom.getElementById('author');
 
 	this.setQuote = function(quote) {
 		self.quoteElement.innerHTML = quote.getContent();
 		self.authorElement.innerHTML = '— ' + quote.author;
+	};
+
+	this.addProvider = function(name, provider) {
+		self.providers[name] = provider;
+	};
+
+	this.getProvider = function(name) {
+		return self.providers[name];
+	};
+
+	this.setRandomQuoteFromProvider = function() {
+		const provider = self.getProvider('reddit');
+		provider.promiseRandomQuote()
+			.then(function(quote) {
+				self.setQuote(quote);
+			})
+			.catch(function() {
+			});
 	};
 };
 

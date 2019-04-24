@@ -6,12 +6,8 @@ function init() {
 
 	const quoteManager = new QuoteManager(document);
 	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
-	redditQuoteProvider.promiseRandomQuote()
-		.then(function(quote) {
-			quoteManager.setQuote(quote);
-		})
-		.catch(function() {
-		});
+	quoteManager.addProvider('reddit', redditQuoteProvider);
+	quoteManager.setRandomQuoteFromProvider();
 
 	const todayElement = document.getElementById('date');
 	const today = new Today(todayElement);
