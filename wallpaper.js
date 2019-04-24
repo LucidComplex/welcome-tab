@@ -1,4 +1,4 @@
-const WallpaperManager = function(dom, settings) {
+const WallpaperManager = function(dom, preferences) {
 	const self = this;
 	this.providers = {};
 	this.styleElement = dom.getElementById('style');

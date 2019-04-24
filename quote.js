@@ -1,4 +1,4 @@
-const QuoteManager = function(dom, settings) {
+const QuoteManager = function(dom, preferences) {
 	const self = this;
 	this.providers = {};
 	this.quoteElement = dom.getElementById('quote');
