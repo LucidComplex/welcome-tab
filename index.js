@@ -1,11 +1,12 @@
 function init() {
-	const wallpaperManager = new WallpaperManager(document);
-	const redditWallpaperProvider = new RedditWallpaperProvider('imaginarymindscapes');
+	const preferences = new Preferences(window.localStorage);
+	const wallpaperManager = new WallpaperManager(document, preferences);
+	const redditWallpaperProvider = new RedditWallpaperProvider(preferences);
 	wallpaperManager.addProvider('reddit', redditWallpaperProvider);
 	wallpaperManager.setRandomWallpaperFromProvider();
 
 	const quoteManager = new QuoteManager(document);
-	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
+	const redditQuoteProvider = new RedditQuoteProvider(preferences);
 	quoteManager.addProvider('reddit', redditQuoteProvider);
 	quoteManager.setRandomQuoteFromProvider();
 

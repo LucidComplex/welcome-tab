@@ -1,10 +1,11 @@
-const RedditQuoteProvider = function(subreddit) {
+const RedditQuoteProvider = function(preferences) {
 	const self = this;
-	this.subreddit = subreddit;
+	this.preferences = preferences;
 
 	this.promiseRandomQuote = function() {
 		return new Promise(function(resolve, reject) {
-			const endpoint = 'https://www.reddit.com/r/' + self.subreddit + '.json';
+			const subreddit = preferences.getItem('redditQuoteSubreddit') || 'showerthoughts';
+			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
 			const request = new XMLHttpRequest();
 			request.open('get', endpoint, true);
 			request.onload = function() {

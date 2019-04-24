@@ -1,6 +1,6 @@
-const RedditWallpaperProvider = function(subreddit) {
+const RedditWallpaperProvider = function(preferences) {
 	const self = this;
-	this.subreddit = subreddit;
+	this.preferences = preferences;
 
 	this.setSubreddit = function(subreddit) {
 		self.subreddit = subreddit;
@@ -8,7 +8,8 @@ const RedditWallpaperProvider = function(subreddit) {
 
 	this.promiseRandomWallpaper = function() {
 		return new Promise(function(resolve, reject) {
-			const endpoint = 'https://www.reddit.com/r/' + self.subreddit + '.json';
+			const subreddit = self.preferences.get('redditWallpaper') || 'earthporn';
+			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
  			const request = new XMLHttpRequest();
  			request.open('get', endpoint, true);
  			request.onload = function() {
