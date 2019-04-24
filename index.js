@@ -8,11 +8,14 @@ function init() {
 		.catch(function() {
 		});
 
-	const quote = document.getElementById('quote');
-	const author = document.getElementById('author');
+	const quoteManager = new QuoteManager(document);
 	const redditQuoteProvider = new RedditQuoteProvider('showerthoughts');
-	const quoteWorker = new QuoteWorker(quote, author, redditQuoteProvider);
-	quoteWorker.displayQuote();
+	redditQuoteProvider.promiseRandomQuote()
+		.then(function(quote) {
+			quoteManager.setQuote(quote);
+		})
+		.catch(function() {
+		});
 
 	const todayElement = document.getElementById('date');
 	const today = new Today(todayElement);
