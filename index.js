@@ -5,7 +5,7 @@ function init() {
 	wallpaperManager.addProvider('reddit', redditWallpaperProvider);
 	wallpaperManager.setRandomWallpaperFromProvider();
 
-	const quoteManager = new QuoteManager(document);
+	const quoteManager = new QuoteManager(document, preferences);
 	const redditQuoteProvider = new RedditQuoteProvider(preferences);
 	quoteManager.addProvider('reddit', redditQuoteProvider);
 	quoteManager.setRandomQuoteFromProvider();

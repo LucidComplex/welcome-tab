@@ -8,7 +8,7 @@ const RedditWallpaperProvider = function(preferences) {
 
 	this.promiseRandomWallpaper = function() {
 		return new Promise(function(resolve, reject) {
-			const subreddit = self.preferences.get('redditWallpaper') || 'earthporn';
+			const subreddit = self.preferences.get('wallpaper_reddit') || 'earthporn';
 			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
  			const request = new XMLHttpRequest();
  			request.open('get', endpoint, true);

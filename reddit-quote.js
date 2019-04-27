@@ -4,7 +4,7 @@ const RedditQuoteProvider = function(preferences) {
 
 	this.promiseRandomQuote = function() {
 		return new Promise(function(resolve, reject) {
-			const subreddit = preferences.getItem('redditQuoteSubreddit') || 'showerthoughts';
+			const subreddit = self.preferences.get('quote_reddit') || 'showerthoughts';
 			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
 			const request = new XMLHttpRequest();
 			request.open('get', endpoint, true);

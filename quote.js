@@ -3,6 +3,7 @@ const QuoteManager = function(dom, preferences) {
 	this.providers = {};
 	this.quoteElement = dom.getElementById('quote');
 	this.authorElement = dom.getElementById('author');
+	this.preferences = preferences;
 
 	this.setQuote = function(quote) {
 		self.quoteElement.innerHTML = quote.getContent();
@@ -18,7 +19,8 @@ const QuoteManager = function(dom, preferences) {
 	};
 
 	this.setRandomQuoteFromProvider = function() {
-		const provider = self.getProvider('reddit');
+		const provider = self.getProvider(self.preferences.getQuoteProvider())
+			|| self.getProvider(Object.keys(self.providers)[0]);
 		provider.promiseRandomQuote()
 			.then(function(quote) {
 				self.setQuote(quote);

@@ -18,7 +18,8 @@ const WallpaperManager = function(dom, preferences) {
 	};
 
 	this.setRandomWallpaperFromProvider = function() {
-		const provider = self.getProvider(self.preferences.getWallpaperProvider()) || self.getProvider(Object.keys(self.providers)[0]);
+		const provider = self.getProvider(self.preferences.getWallpaperProvider())
+			|| self.getProvider(Object.keys(self.providers)[0]);
 		provider.promiseRandomWallpaper()
 			.then(function(wallpaper) {
 				self.setWallpaper(wallpaper);
