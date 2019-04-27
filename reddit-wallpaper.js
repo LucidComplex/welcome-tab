@@ -8,7 +8,11 @@ const RedditWallpaperProvider = function(preferences) {
 
 	this.promiseRandomWallpaper = function() {
 		return new Promise(function(resolve, reject) {
-			const subreddit = self.preferences.get('wallpaper_reddit') || 'earthporn';
+			let subreddit = self.preferences.get('wallpaper_reddit');
+			if (!subreddit) {
+				subreddit = 'earthporn';
+				self.preferences.set('wallpaper_reddit', subreddit);
+			}
 			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
  			const request = new XMLHttpRequest();
  			request.open('get', endpoint, true);
@@ -28,5 +32,17 @@ const RedditWallpaperProvider = function(preferences) {
  		const randomInt = Math.floor(Math.random() * 25);
  		return response.data.children[randomInt].data.url;
  	};
-};
 
+	this.buildSettingsLayout = function() {
+		const div = document.createElement('div');
+		const span = document.createElement('span');
+		const label = document.createTextNode('Wallpaper subreddit: ');
+		const value = self.preferences.get('wallpaper_reddit');
+		const field = document.createElement('input', {type: 'text'});
+		field.value = value;
+		span.appendChild(label);
+		span.appendChild(field);
+		div.appendChild(span);
+		return div;
+	};
+};

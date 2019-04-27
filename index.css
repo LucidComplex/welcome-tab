@@ -126,19 +126,19 @@ body {
 	text-decoration: underline;
 }
 
-.forms-container h1,
-.forms-container h2,
-.forms-container h3,
-.forms-container h4,
-.forms-container h5,
-.forms-container h6 {
+#settings-components-container h1,
+#settings-components-container h2,
+#settings-components-container h3,
+#settings-components-container h4,
+#settings-components-container h5,
+#settings-components-container h6 {
 	margin: 5px 0px;
 }
 
-.forms-container div {
-	margin: 5px 0px;
+#settings-components-container div {
+	margin: 20px 0px;
 }
 
-.forms-container {
+#settings-components-container {
 	font-family: sans-serif;
 }

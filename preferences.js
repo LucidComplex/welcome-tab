@@ -21,4 +21,8 @@ const Preferences = function(storage) {
 	this.get = function(key) {
 		return self.storage.getItem(key);
 	};
+
+	this.set = function(key, value) {
+		self.storage.setItem(key, value);
+	}
 };
