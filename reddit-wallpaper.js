@@ -1,10 +1,7 @@
 const RedditWallpaperProvider = function(preferences) {
 	const self = this;
 	this.preferences = preferences;
-
-	this.setSubreddit = function(subreddit) {
-		self.subreddit = subreddit;
-	};
+	this.field = document.createElement('input', {type: 'text'});
 
 	this.promiseRandomWallpaper = function() {
 		return new Promise(function(resolve, reject) {
@@ -38,11 +35,14 @@ const RedditWallpaperProvider = function(preferences) {
 		const span = document.createElement('span');
 		const label = document.createTextNode('Wallpaper subreddit: ');
 		const value = self.preferences.get('wallpaper_reddit');
-		const field = document.createElement('input', {type: 'text'});
-		field.value = value;
+		self.field.value = value;
 		span.appendChild(label);
-		span.appendChild(field);
+		span.appendChild(self.field);
 		div.appendChild(span);
 		return div;
+	};
+
+	this.save = function() {
+		self.preferences.set('wallpaper_reddit', self.field.value);
 	};
 };

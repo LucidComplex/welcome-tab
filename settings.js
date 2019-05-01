@@ -4,7 +4,7 @@ const Settings = function(dom) {
 	this.settingsCloseElement = dom.getElementById('settings-close');
 	this.settingsContainerElement = dom.getElementById('settings-container');
 	this.settingsComponentsContainer = dom.getElementById('settings-components-container');
-	this.saveButton = document.createElement('button');
+	this.saveButton = dom.getElementById('save-button');
 
 	this.components = [];
 
@@ -22,9 +22,19 @@ const Settings = function(dom) {
 
 	this.onSaveClick = function() {
 		for (let i = 0; i < self.components.length; i++) {
-
+			if (self.components[i]) {
+				self.components[i].save();
+			}
 		}
+		self.onSave();
 	}
+
+	this.onSave = function() {
+	};
+
+	this.setOnSave = function(callback) {
+		self.onSave = callback;
+	};
 
 	this.onOpenClick = function() {
 		self.settingsContainerElement.classList.add('slide-in');
@@ -38,12 +48,27 @@ const Settings = function(dom) {
 		self.components.push(component);
 	};
 
-	this.drawLayout = function() {
+	this.replaceComponent = function(oldComponent, newComponent) {
 		for (let i = 0; i < self.components.length; i++) {
-			const component = self.components[i].buildSettingsLayout();
-			self.settingsComponentsContainer.appendChild(component);
+			if (self.components[i] === oldComponent) {
+				self.components[i] = newComponent;
+				return;
+			}
 		}
-		self.saveButton.innerHTML = 'Save';
-		self.settingsComponentsContainer.appendChild(self.saveButton);
+	};
+
+	this.drawLayout = function() {
+		const element = self.settingsComponentsContainer;
+		while (element.lastChild) {
+			element.removeChild(element.lastChild);
+		}
+		for (let i = 0; i < self.components.length; i++) {
+			const component = self.components[i];
+			if (!component) {
+				continue;
+			}
+			const componentLayout = component.buildSettingsLayout();
+			element.appendChild(componentLayout);
+		}
 	};
 };
