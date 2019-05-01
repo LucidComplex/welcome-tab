@@ -12,7 +12,7 @@ function init() {
 		preferences.setWallpaperProvider(providerName);
 	}
 	wallpaperManager.addProviders(wallpaperProviders);
-	wallpaperManager.setRandomWallpaperFromProvider();
+	wallpaperManager.setWallpaperFromProvider();
 
 	const quoteManager = new QuoteManager(document, preferences);
 	const redditQuoteProvider = new RedditQuoteProvider(preferences);
@@ -43,7 +43,7 @@ function init() {
 	wallpaperManager.setOnProviderFieldChange(providerFieldChange);
 	quoteManager.setOnProviderFieldChange(providerFieldChange)
 	settings.setOnSave(function() {
-		wallpaperManager.setRandomWallpaperFromProvider();
+		wallpaperManager.setWallpaperFromProvider();
 		quoteManager.setRandomQuoteFromProvider();
 	});
 	settings.drawLayout();

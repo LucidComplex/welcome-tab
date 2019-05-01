@@ -3,7 +3,7 @@ const RedditWallpaperProvider = function(preferences) {
 	this.preferences = preferences;
 	this.field = document.createElement('input', {type: 'text'});
 
-	this.promiseRandomWallpaper = function() {
+	this.promiseWallpaper = function() {
 		return new Promise(function(resolve, reject) {
 			let subreddit = self.preferences.get('wallpaper_reddit');
 			if (!subreddit) {
