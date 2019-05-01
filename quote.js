@@ -29,10 +29,10 @@ const QuoteManager = function(dom, preferences) {
 		return self.providers[name];
 	};
 
-	this.setRandomQuoteFromProvider = function() {
+	this.setQuoteFromProvider = function() {
 		const provider = self.getProvider(self.preferences.getQuoteProvider())
 			|| self.getProvider(Object.keys(self.providers)[0]);
-		provider.promiseRandomQuote()
+		provider.promiseQuote()
 			.then(function(quote) {
 				self.setQuote(quote);
 			})
@@ -110,7 +110,7 @@ const QuoteWorker = function(quoteElement, authorElement, quoteProvider) {
 	this.quoteProvider = quoteProvider;
 
 	this.displayQuote = function() {
-		quoteProvider.getRandomQuote().then(function(quote) {
+		quoteProvider.getQuote().then(function(quote) {
 			self.quoteElement.innerHTML = quote.title;
 			self.authorElement.innerHTML = '—/u/' + quote.author;
 		}).catch(function() {});

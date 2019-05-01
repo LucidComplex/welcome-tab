@@ -3,7 +3,7 @@ const RedditQuoteProvider = function(preferences) {
 	this.preferences = preferences;
 	this.field = document.createElement('input', {type: 'text'});
 
-	this.promiseRandomQuote = function() {
+	this.promiseQuote = function() {
 		return new Promise(function(resolve, reject) {
 			let subreddit = self.preferences.get('quote_reddit');
 			if (!subreddit) {

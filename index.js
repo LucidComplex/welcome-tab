@@ -26,7 +26,7 @@ function init() {
 		preferences.setQuoteProvider(providerName);
 	}
 	quoteManager.addProviders(quoteProviders);
-	quoteManager.setRandomQuoteFromProvider();
+	quoteManager.setQuoteFromProvider();
 
 	const dateManager = new DateManager(document);
 	dateManager.setDate();
@@ -44,7 +44,7 @@ function init() {
 	quoteManager.setOnProviderFieldChange(providerFieldChange)
 	settings.setOnSave(function() {
 		wallpaperManager.setWallpaperFromProvider();
-		quoteManager.setRandomQuoteFromProvider();
+		quoteManager.setQuoteFromProvider();
 	});
 	settings.drawLayout();
 }
