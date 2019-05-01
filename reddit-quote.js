@@ -1,10 +1,15 @@
 const RedditQuoteProvider = function(preferences) {
 	const self = this;
 	this.preferences = preferences;
+	this.field = document.createElement('input', {type: 'text'});
 
 	this.promiseRandomQuote = function() {
 		return new Promise(function(resolve, reject) {
-			const subreddit = self.preferences.get('quote_reddit') || 'showerthoughts';
+			let subreddit = self.preferences.get('quote_reddit');
+			if (!subreddit) {
+				subreddit = 'showerthoughts';
+				self.preferences.set('quote_reddit', subreddit);
+			}
 			const endpoint = 'https://www.reddit.com/r/' + subreddit + '.json';
 			const request = new XMLHttpRequest();
 			request.open('get', endpoint, true);
@@ -27,5 +32,21 @@ const RedditQuoteProvider = function(preferences) {
 		}
 		const data = response.data.children[randomInt].data;
 		return new Quote(data.title, '/u/' + data.author);
+	};
+
+	this.buildSettingsLayout = function() {
+		const div = document.createElement('div');
+		const span = document.createElement('span');
+		const label = document.createTextNode('Quote subreddit: ');
+		const value = self.preferences.get('quote_reddit');
+		self.field.value = value;
+		span.appendChild(label);
+		span.appendChild(self.field);
+		div.appendChild(span);
+		return div;
+	};
+
+	this.save = function() {
+		self.preferences.set('quote_reddit', self.field.value);
 	};
 };

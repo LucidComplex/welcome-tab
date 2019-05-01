@@ -16,7 +16,16 @@ function init() {
 
 	const quoteManager = new QuoteManager(document, preferences);
 	const redditQuoteProvider = new RedditQuoteProvider(preferences);
-	quoteManager.addProvider('Reddit', redditQuoteProvider);
+	const quoteProviders = {
+		'None': null,
+		'Reddit': redditQuoteProvider,
+	};
+	providerName = preferences.getQuoteProvider();
+	if (!providerName) {
+		providerName = 'Reddit';
+		preferences.setQuoteProvider(providerName);
+	}
+	quoteManager.addProviders(quoteProviders);
 	quoteManager.setRandomQuoteFromProvider();
 
 	const dateManager = new DateManager(document);
@@ -25,12 +34,17 @@ function init() {
 	const settings = new Settings(document);
 	settings.addComponent(wallpaperManager);
 	settings.addComponent(redditWallpaperProvider);
-	wallpaperManager.setOnProviderFieldChange(function(previousProvider, currentProvider) {
+	settings.addComponent(quoteManager);
+	settings.addComponent(redditQuoteProvider);
+	const providerFieldChange = function(previousProvider, currentProvider) {
 		settings.replaceComponent(previousProvider, currentProvider);
 		settings.drawLayout();
-	});
+	};
+	wallpaperManager.setOnProviderFieldChange(providerFieldChange);
+	quoteManager.setOnProviderFieldChange(providerFieldChange)
 	settings.setOnSave(function() {
 		wallpaperManager.setRandomWallpaperFromProvider();
+		quoteManager.setRandomQuoteFromProvider();
 	});
 	settings.drawLayout();
 }

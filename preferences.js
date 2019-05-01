@@ -15,7 +15,7 @@ const Preferences = function(storage) {
 	};
 
 	this.setQuoteProvider = function(provider) {
-		self.storage.setItem('wallpaperProvider', provider);
+		self.storage.setItem('quoteProvider', provider);
 	};
 
 	this.get = function(key) {
