@@ -2,9 +2,11 @@ function init() {
 	const preferences = new Preferences(window.localStorage);
 	const wallpaperManager = new WallpaperManager(document, preferences);
 	const redditWallpaperProvider = new RedditWallpaperProvider(preferences);
+	const linkWallpaperProvider = new LinkWallpaperProvider(preferences);
 	const wallpaperProviders = {
 		'None': null,
 		'Reddit': redditWallpaperProvider,
+		'URL': linkWallpaperProvider,
 	}
 	let providerName = preferences.getWallpaperProvider();
 	if (!providerName) {
@@ -33,9 +35,9 @@ function init() {
 
 	const settings = new Settings(document);
 	settings.addComponent(wallpaperManager);
-	settings.addComponent(redditWallpaperProvider);
+	settings.addComponent(wallpaperProviders[preferences.getWallpaperProvider()]);
 	settings.addComponent(quoteManager);
-	settings.addComponent(redditQuoteProvider);
+	settings.addComponent(quoteProviders[preferences.getQuoteProvider()]);
 	const providerFieldChange = function(previousProvider, currentProvider) {
 		settings.replaceComponent(previousProvider, currentProvider);
 		settings.drawLayout();
